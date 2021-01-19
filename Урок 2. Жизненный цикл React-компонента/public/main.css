@@ -1,0 +1,59 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background: linear-gradient(253deg, #0cc898, #1797d2, #864fe1);
+  background-size: 300% 300%;
+  -webkit-animation: Background 25s ease infinite;
+  -moz-animation: Background 25s ease infinite;
+  animation: Background 25s ease infinite; }
+
+h1 {
+  margin: 2rem 0;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2em;
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.6); }
+
+.wrapper {
+  background-color: lavender;
+  margin: 0 auto;
+  width: 35rem; }
+
+.window-message {
+  height: 20rem; }
+
+.message {
+  display: flex;
+  justify-content: end;
+  border-top: #d4c9c9 2px solid; }
+  .message input {
+    padding-left: 0.5rem;
+    width: 88%;
+    border: none;
+    height: 2rem;
+    outline: none; }
+    .message input:focus {
+      border: none; }
+
+.message-block h5 {
+  padding: 0.5rem; }
+
+.message-block p {
+  margin-left: 2rem; }
+
+.submit-btn {
+  padding: 0.3rem;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent; }
+  .submit-btn:hover {
+    background-color: springgreen; }
+
+
+/*# sourceMappingURL=main.css.map*/
