@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+body {
+  background: linear-gradient(253deg, #0cc898, #1797d2, #864fe1);
+  background-size: 300% 300%;
+  -webkit-animation: Background 25s ease infinite;
+  -moz-animation: Background 25s ease infinite;
+  animation: Background 25s ease infinite; }
+
+.layout {
+  height: 100%;
+  width: 50%;
+  margin: auto; }
+
+.chat {
+  display: flex;
+  justify-content: center; }
+
+.message-field {
+  display: flex;
+  flex-direction: column;
+  background-color: #e2e2e2;
+  height: 100%;
+  padding: 20px;
+  overflow-y: scroll; }
+
+.message {
+  background-color: lightblue;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 18px;
+  margin: 5px; }
+  .message h5 {
+    padding: 0.5rem; }
+  .message p {
+    margin-left: 2rem; }
+
+.message-sender {
+  color: gray;
+  font-size: 14px; }
+
+h1 {
+  margin: 2rem 0;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 2em;
+  letter-spacing: 2px;
+  text-align: center;
+  text-shadow: 1px 2px 1px rgba(0, 0, 0, 0.6); }
+
+.wrapper {
+  background-color: lavender;
+  display: flex;
+  flex-direction: column;
+  height: 30rem; }
+
+.input-message {
+  margin-top: auto; }
+
+.message-form {
+  display: flex;
+  align-items: center;
+  padding: 0 0 0.5rem 1rem; }
+
+.submit-btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin: 0.5rem 1rem; }
+  .submit-btn:hover {
+    background-color: springgreen; }
+
+
+/*# sourceMappingURL=main.css.map*/
