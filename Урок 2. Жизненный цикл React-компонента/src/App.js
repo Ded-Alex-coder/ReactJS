@@ -5,13 +5,11 @@ import Message from './components/Message';
 import './app.scss';
 
 function App() {
-  const [messages, setMessages] = useState([
-    { author: 'User', text: 'Кто здесь?' },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   const renderMessage = useCallback((message, i) => {
     return <Message message={message} key={i} />;
-  });
+  }, []);
 
   const handleAddMessage = useCallback((text, author = 'User') => {
     setMessages((prevMessages) => [...prevMessages, { author, text }]);
@@ -19,10 +17,7 @@ function App() {
 
   useEffect(() => {
     let timeout;
-    if (
-      messages[messages.length - 1].author !== 'robotChappi' &&
-      messages.length > 1
-    )
+    if (messages.length === 0 || messages[messages.length - 1].author == 'User')
       timeout = setTimeout(() => {
         handleAddMessage('Чё, кого!', 'robotChappi');
       }, 1500);

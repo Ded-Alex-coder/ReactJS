@@ -42,10 +42,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 function App() {
-  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([{
-    author: 'User',
-    text: 'Кто здесь?'
-  }]),
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       messages = _useState2[0],
       setMessages = _useState2[1];
@@ -55,7 +52,7 @@ function App() {
       message: message,
       key: i
     });
-  });
+  }, []);
   var handleAddMessage = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (text) {
     var author = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'User';
     setMessages(function (prevMessages) {
@@ -67,7 +64,7 @@ function App() {
   }, []);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var timeout;
-    if (messages[messages.length - 1].author !== 'robotChappi' && messages.length > 1) timeout = setTimeout(function () {
+    if (messages.length === 0 || messages[messages.length - 1].author == 'User') timeout = setTimeout(function () {
       handleAddMessage('Чё, кого!', 'robotChappi');
     }, 1500);
     return function () {
@@ -152,10 +149,7 @@ function MessageField(_ref) {
   var handleSambmit = (0,react__WEBPACK_IMPORTED_MODULE_0__.useCallback)(function (event) {
     event.preventDefault();
     onAddMessage(value);
-
-    if (value.trim()) {
-      setValue('');
-    }
+    setValue('');
   }, [onAddMessage, value]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
     className: "message",

@@ -12,9 +12,7 @@ export default function MessageField({ onAddMessage }) {
     (event) => {
       event.preventDefault();
       onAddMessage(value);
-      if (value.trim()) {
-        setValue('');
-      }
+      setValue('');
     },
     [onAddMessage, value]
   );
