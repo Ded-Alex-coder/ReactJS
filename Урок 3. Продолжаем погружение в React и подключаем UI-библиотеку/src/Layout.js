@@ -7,13 +7,11 @@ import ChatList from './components/ChatList';
 import './app.scss';
 
 function Layout() {
-  const [messages, setMessages] = useState([
-    { author: 'robotChappi', text: 'Напиши мне' },
-  ]);
+  const [messages, setMessages] = useState([]);
 
   const renderMessage = useCallback((message, i) => {
     return <Message message={message} key={i} />;
-  });
+  }, []);
 
   const handleAddMessage = useCallback((text, author = 'User') => {
     setMessages((prevMessages) => [...prevMessages, { author, text }]);
@@ -21,7 +19,7 @@ function Layout() {
 
   useEffect(() => {
     let timeout;
-    if (messages[messages.length - 1].author == 'User')
+    if (messages.length === 0 || messages[messages.length - 1].author == 'User')
       timeout = setTimeout(() => {
         handleAddMessage('Чё, кого!', 'robotChappi');
       }, 1500);

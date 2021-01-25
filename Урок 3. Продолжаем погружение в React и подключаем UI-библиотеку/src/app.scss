@@ -32,18 +32,30 @@ body {
   overflow-y: scroll;
 }
 
-.message {
+.titel_user {
+  padding: 0.5rem;
+}
+
+.user_text {
+  margin-left: 2rem;
+}
+
+.message_user {
   background-color: lightblue;
   padding: 5px 15px;
   border-radius: 20px;
   font-size: 18px;
   margin: 5px;
-  h5 {
-    padding: 0.5rem;
-  }
-  p {
-    margin-left: 2rem;
-  }
+  align-self: flex-end;
+}
+
+.message_robot {
+  background-color: lightblue;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 18px;
+  margin: 5px;
+  align-self: flex-start;
 }
 
 .message-sender {
@@ -76,17 +88,6 @@ h1 {
   display: flex;
   align-items: center;
   padding: 0 0 0.5rem 1rem;
-  // & input {
-  //   padding-left: 0.5rem;
-  //   width: 100%;
-  //   border: none;
-  //   height: 3rem;
-  //   outline: none;
-  //   font-size: 1.5rem;
-  //   &:focus {
-  //     border: none;
-  //   }
-  // }
 }
 
 .submit-btn {

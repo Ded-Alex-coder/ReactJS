@@ -3,13 +3,12 @@ import React from 'react';
 export default function Message({ message }) {
   return (
     <div
-      className="message"
-      style={{
-        alignSelf: message.author === 'robotChappi' ? 'flex-start' : 'flex-end',
-      }}
+      className={
+        message.author === 'robotChappi' ? 'message_robot' : 'message_user'
+      }
     >
-      <h5>{message.author}</h5>
-      <p>{message.text}</p>
+      <h5 className=".titel_user">{message.author}</h5>
+      <p className="user_text">{message.text}</p>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useRef, useEffect } from 'react';
 import { TextField, FloatingActionButton } from 'material-ui';
 import SendIcon from 'material-ui/svg-icons/content/send';
 import Message from './Message';
@@ -8,18 +8,22 @@ export default function MessageField({ onAddMessage }) {
 
   const handleChange = useCallback((event) => {
     setValue(event.target.value);
-  });
+  }, []);
 
   const handleSambmit = useCallback(
     (event) => {
       event.preventDefault();
       onAddMessage(value);
-      if (value.trim()) {
-        setValue('');
-      }
+      setValue('');
     },
     [onAddMessage, value]
   );
+
+  const inputFocus = useRef('');
+
+  useEffect(() => {
+    inputFocus.current.focus();
+  }, []);
 
   return (
     <div>
@@ -31,6 +35,7 @@ export default function MessageField({ onAddMessage }) {
           style={{ fontSize: '1.5rem' }}
           onChange={handleChange}
           value={value}
+          ref={inputFocus}
         />
         <FloatingActionButton onClick={handleSambmit} className="submit-btn">
           <SendIcon />
