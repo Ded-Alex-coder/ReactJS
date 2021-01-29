@@ -38,7 +38,10 @@ function Layout(props) {
         <div className="wrapper">
           <div className="message-field">{messages.map(renderMessage)}</div>
           <div className="input-message">
-            <MessageField onAddMessage={handleAddMessage} />
+            <MessageField
+              chatId={props.chatId}
+              onAddMessage={handleAddMessage}
+            />
           </div>
         </div>
       </div>
