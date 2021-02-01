@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default function Message({ message }) {
+export default function Message(props) {
   return (
     <div
       className={
-        message.author === 'robotChappi' ? 'message_robot' : 'message_user'
+        props.author === 'robotChappi' ? 'message_robot' : 'message_user'
       }
     >
-      <h5 className=".titel_user">{message.author}</h5>
-      <p className="user_text">{message.text}</p>
+      <h5 className="titel_user">{props.author}</h5>
+      <p className="user_text">{props.text}</p>
     </div>
   );
 }

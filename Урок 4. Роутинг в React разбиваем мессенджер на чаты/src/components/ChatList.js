@@ -23,7 +23,7 @@ export default function ChatList() {
 
   return (
     <List className={classes.root}>
-      <Link className={classes.a} to="/chat/1/">
+      <Link className={classes.a} to="/chat/id1/">
         <ListItem>
           <ListItemIcon>
             <SendIcon />
@@ -31,7 +31,8 @@ export default function ChatList() {
           <ListItemText primary="Chat 1" />
         </ListItem>
       </Link>
-      <Link className={classes.a} to="/chat/2/">
+
+      <Link className={classes.a} to="/chat/id2/">
         <ListItem>
           <ListItemIcon>
             <SendIcon />
@@ -39,7 +40,8 @@ export default function ChatList() {
           <ListItemText primary="Chat 2" />
         </ListItem>
       </Link>
-      <Link className={classes.a} to="/chat/3/">
+
+      <Link className={classes.a} to="/chat/id3/">
         <ListItem>
           <ListItemIcon>
             <SendIcon />

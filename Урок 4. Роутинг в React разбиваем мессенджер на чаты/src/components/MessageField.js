@@ -1,6 +1,5 @@
 import React, { useCallback, useState, useRef, useEffect } from 'react';
 import Message from './Message';
-import usePrevious from './usePrevious';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
@@ -17,57 +16,41 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MessageField({ onAddMessage, chatId }) {
+export default function MessageField({ chatId }) {
   const [value, setValue] = useState(' ');
 
+  const classes = useStyles();
   const [chats, setChats] = useState({
-    id1: { title: 'Чат 1', messageList: [1] },
-    id2: { title: 'Чат 2', messageList: [2] },
-    id3: { title: 'Чат 3', messageList: [3] },
+    id1: { title: 'Чат 1', messageList: ['id1'] },
+    id2: { title: 'Чат 2', messageList: ['id2'] },
+    id3: { title: 'Чат 3', messageList: ['id3'] },
   });
   const [messages, setMessages] = useState({
-    id1: { text: 'Привет!', sender: 'robotChappi' },
-    id2: { text: 'Здравствуйте!', sender: 'robotChappi' },
+    id1: { text: 'Привет!', author: 'robotChappi' },
+    id2: { text: 'Здравствуйте!', author: 'robotChappi' },
+    id3: { text: 'Хай', author: 'robotChappi' },
   });
   const [input, setInput] = useState(' ');
 
-  const classes = useStyles();
-
-  const prevMessages = usePrevious(messages);
   useEffect(() => {
-    let timeout;
     if (
-      prevMessages.length < messages.length ||
-      messages[messages.length - 1].author == 'User'
-    )
-      timeout = setTimeout(() => {
-        handleSendMessage('Не приставай ко мне, я робот!', 'bot');
-      }, 1500);
+      Object.values(messages)[Object.values(messages).length - 1].author ===
+      'User'
+    ) {
+      setTimeout(
+        () => handleSendMessage('Не приставай ко мне, я робот!', 'robotChappi'),
+        1000
+      );
+    }
+  }, [messages]);
 
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [messages, handleSendMessage]);
-
-  // useEffect(() => {
-  //   if (
-  //     Object.values(messages)[Object.values(messages).length - 1].sender ===
-  //     'User'
-  //   ) {
-  //     setTimeout(
-  //       () => handleSendMessage('Не приставай ко мне, я робот!', 'robotChappi'),
-  //       1000
-  //     );
-  //   }
-  // }, [messages]);
-
-  const handleSendMessage = (message, sender) => {
-    if (input.length > 0 || sender === 'robotChappi') {
+  const handleSendMessage = (message, author) => {
+    if (input.length > 0 || author === 'User') {
       const messageId = Object.keys(messages).length + 1;
 
       setMessages({
         ...messages,
-        [messageId]: { text: message, sender: sender },
+        [messageId]: { text: message, author: author },
       });
 
       setChats({
@@ -78,13 +61,13 @@ export default function MessageField({ onAddMessage, chatId }) {
         },
       });
     }
-    if (sender === 'User') {
-      setInput(''); // инпут либо обект с полями либо текстовое поле а у вас и то и другое
+    if (author === 'User') {
+      setInput('');
     }
   };
 
   const handleChange = (event) => {
-    setInput({ [event.target.name]: event.target.value }); // инпут либо обект с полями либо текстовое поле а у вас и то и другое
+    setInput(event.target.value);
   };
 
   const handleKeyUp = (event) => {
@@ -93,26 +76,25 @@ export default function MessageField({ onAddMessage, chatId }) {
     }
   };
 
-  const messageElements = chats[chatId].messageList.map((messageId, index) => (
-    <Message
-      key={index}
-      text={messages[messageId].text}
-      sender={messages[messageId].sender}
-    />
-  ));
-
-  const handleChanges = useCallback((event) => {
-    setValue(event.target.value);
+  const messageElements = chats[chatId].messageList.map((messageId, index) => {
+    return (
+      <Message
+        key={index}
+        text={messages[messageId].text}
+        author={messages[messageId].author}
+      />
+    );
   });
 
-  const handleSambmit = useCallback(
-    (event) => {
-      event.preventDefault();
-      onAddMessage(value);
-      setValue('');
-    },
-    [onAddMessage, value]
-  );
+  // const handleChanges = useCallback((event) => {
+  //   setValue(event.target.value);
+  // });
+
+  const handleSambmit = useCallback((event) => {
+    event.preventDefault();
+
+    setValue('');
+  }, []);
 
   return (
     <>
