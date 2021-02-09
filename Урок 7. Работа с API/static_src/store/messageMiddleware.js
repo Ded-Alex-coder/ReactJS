@@ -7,7 +7,7 @@ export default (store) => (next) => (action) => {
   next(action);
 
   if (action.type === sendMessage.toString()) {
-    const { name, id } = action.payload;
+    const { name, id, content } = action.payload;
     if (name !== BOT_NAME) {
       clearTimeout(timeoutsId[id]);
       timeoutsId[id] = setTimeout(generateBotAnswer, 4000, store, id, name);

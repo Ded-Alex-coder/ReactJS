@@ -6,9 +6,12 @@ import { ChatForm } from '../ChatForm/ChatForm';
 
 import './Chat.css';
 
-export const Chat = ({ isLoading, messages, onSendMessage }) => {
+export const Chat = ({ isLoading, error, messages, onSendMessage }) => {
   if (isLoading) {
     return <div>Загрузка чатов</div>;
+  }
+  if (error) {
+    return <div>Ошибка подключения</div>;
   }
   if (messages) {
     return (

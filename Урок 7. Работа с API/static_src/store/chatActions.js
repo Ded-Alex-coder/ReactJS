@@ -2,6 +2,7 @@ import { createActions } from 'redux-actions';
 
 export const {
   loadingChats,
+  errorLoading,
   initChats,
   sendMessage,
   addChat,
@@ -9,6 +10,7 @@ export const {
   unfire,
 } = createActions({
   LOADING_CHATS: () => ({}),
+  ERROR_LOADING: (error) => ({ error }),
   INIT_CHATS: (chats) => ({ chats }),
   SEND_MESSAGE: (id, name, content) => ({ id, name, content }),
   ADD_CHAT: (id, name) => ({ id, name }),

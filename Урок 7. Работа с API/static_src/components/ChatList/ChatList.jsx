@@ -11,7 +11,7 @@ import { useInput } from '../../hooks/useInput';
 
 import './ChatList.css';
 
-export const ChatList = ({ isLoading, chats, createChat }) => {
+export const ChatList = ({ isLoading, error, chats, createChat }) => {
   const [name, setName, setNameState] = useInput('');
 
   const handleAddChat = (event) => {
@@ -23,33 +23,39 @@ export const ChatList = ({ isLoading, chats, createChat }) => {
   if (isLoading) {
     return <div>Загрузка чатов</div>;
   }
+  if (error) {
+    return null;
+  }
+
   return (
     <div className="chat__chatlist">
       <List component="nav">
-        {chats.map(({ id, name }) => (
+        {chats.map(({ id, name, fire }) => (
           <ListItem key={id} button component={Link} to={'/chats/' + id}>
             <ListItemText primary={name} />
-            {/*                 <ListItemIcon>
-                        <DraftsIcon />
-                    </ListItemIcon>*/}
+            {fire && (
+              <ListItemIcon>
+                <DraftsIcon />
+              </ListItemIcon>
+            )}
           </ListItem>
         ))}
       </List>
       <div>
         <form>
           <TextField
-            label="Введите имя"
+            label="Создать новый чат"
             autoFocus
             multiline
             required
             id="standard-basic"
             name="content"
-            placeholder="Имя чата"
+            placeholder="Название чата"
             value={name}
             onChange={setName}
           />
           <Button variant="contained" color="primary" onClick={handleAddChat}>
-            Добавить чат
+            Создать чат
           </Button>
         </form>
       </div>
