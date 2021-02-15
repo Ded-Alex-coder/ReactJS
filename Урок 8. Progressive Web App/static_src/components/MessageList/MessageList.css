@@ -1,0 +1,11 @@
+.chat__messages {
+    display: flex;
+    flex-direction: column;
+    background: #a4d5ff;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+    padding: 30px;
+    border-radius: 12px;
+    -webkit-box-shadow: 0 10px 40px rgba(88,114,154,.3);
+    box-shadow: 0 10px 40px rgba(88,114,154,.3);
+}
